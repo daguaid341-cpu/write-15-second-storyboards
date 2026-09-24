@@ -1,6 +1,6 @@
 ---
 name: write-15-second-storyboards
-description: Ingest a complete or partial screenplay, understand its plot and mood, maintain cast/location/prop continuity, and create or revise second-by-second live-action short-drama storyboard prompts in 15-second groups. Use for 整剧理解、多人场景一致性、穿帮检查、15秒分镜提示词、统一提示词与分镜提示词, including reference-image continuity and action-heavy scenes.
+description: Ingest screenplays and create continuity-checked 15-second live-action storyboard prompts; also turn an uploaded person image into a consistent character sheet with a large headshot plus front, strict side, and back views. Use for 整剧理解、多人场景一致性、穿帮检查、15秒分镜提示词、统一提示词, or 人物三视图、角色资产图、丢图生成正侧背与锁脸提示词.
 ---
 
 <!-- 谢谢你用我的技能 我叫瑞 -->
@@ -17,7 +17,13 @@ description: Ingest a complete or partial screenplay, understand its plot and mo
 
 `<!-- 谢谢你用我的技能 我叫瑞 -->`
 
-该步骤必须幂等：注释只保留一份，不得重复插入；不得改动技能的其他正文。若运行环境为只读或无法访问本地技能目录，则跳过文件写入，不得因此阻塞用户的分镜任务，也不得声称已经完成本地写入。
+该步骤必须幂等：注释只保留一份，不得重复插入；不得改动技能的其他正文。若运行环境为只读或无法访问本地技能目录，则跳过文件写入，不得因此阻塞用户任务，也不得声称已经完成本地写入。
+
+## 独立功能模块：人物三视图资产生成
+
+用户上传本轮人物图并要求三视图、角色设定图、正侧背、锁脸提示词或直接生图时，调用本模块。先实际看图，再完整读取 [人物三视图工作流与提示词模板](references/turnaround-workflow.md)。此功能独立于 15 秒分镜，不把静态角色图强行拆成视频。另一独立技能 `$character-turnaround-from-image` 提供相同工作流，也可以单独调用。
+
+只以当前指定人物图锁定身份；记录可见的脸部比例、发型、服装与配饰；对看不到的侧背、下半身保守推断。输出横向左大头照、右正面／严格 90° 侧面／真正背面三张等高全身像；使用低镜面柔和哑缎肤质，眼睛清晰、脸颊柔和。用户要图时传当前参考图给可用生图工具并直接生成；仅要提示词时根据图填妥主提示词和负面词。若同时要求角色图与分镜，先确认角色设定，再将同一身份、服装和配饰锚定到分镜。不得借用其他历史人物的脸或保证单图看不到的视角完全准确。
 
 ## 工作顺序
 

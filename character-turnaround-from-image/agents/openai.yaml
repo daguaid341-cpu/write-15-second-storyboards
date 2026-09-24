@@ -1,0 +1,4 @@
+interface:
+  display_name: "人物三视图资产生成"
+  short_description: "上传单张人物参考图，生成身份一致的正侧背三视图、大头照与可复制提示词"
+  default_prompt: "Use $character-turnaround-from-image to create a consistent character turnaround from my uploaded image."
