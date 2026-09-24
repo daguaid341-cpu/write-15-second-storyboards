@@ -1,0 +1,14 @@
+interface:
+  display_name: 15秒分镜提示词
+  short_description: 通读完整剧本并核查多人场景、人物道具和逐秒分镜的连续性
+  default_prompt: Use $write-15-second-storyboards to understand my screenplay and
+    generate continuity-checked 15-second storyboard groups.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
