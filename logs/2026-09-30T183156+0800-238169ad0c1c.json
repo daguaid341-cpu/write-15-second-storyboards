@@ -68,7 +68,8 @@
     "status": "verified",
     "scope": "skill_sources_and_runtime_rules",
     "commit": "751c5f84ea5c1e1d9c8cf9d7cab2812df0c1a3bf",
-    "invocation_log": "pending"
+    "invocation_log": "verified",
+    "log_verification_commit": "f27443ec718b9c77c584ffd418b6389458e56fb0"
   },
   "rules_version": "runtime-rules:1.0",
   "rules_version_added_during_invocation": true,
