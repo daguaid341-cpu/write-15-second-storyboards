@@ -6,7 +6,7 @@
   "skill": "write-15-second-storyboards",
   "task_summary": "核对并同步最新版技能规则与调用日志到GitHub",
   "rules_version": "runtime-rules:1.0",
-  "status": "in_progress",
+  "status": "completed",
   "events": [
     {
       "at": "2026-09-30T18:50:04+08:00",
@@ -17,6 +17,16 @@
       "at": "2026-09-30T18:54:30+08:00",
       "stage": "sync_check",
       "summary": "核对两份Skill、参考工作流、脚本与备用规则：生成规则已为最新版。发现独立人物Skill的界面配置和图标尚未同步，已验证配置可解析且图标引用存在，准备补齐并更新README目录说明。"
+    },
+    {
+      "at": "2026-09-30T18:55:30+08:00",
+      "stage": "sync_verified",
+      "summary": "GitHub主分支已接受本次提交，人物Skill界面配置、图标、README及本次阶段日志均已实际读取并匹配；既有分镜、生图、真实肤质、场景展示和调用记录规则已核对为最新版。"
+    },
+    {
+      "at": "2026-09-30T18:55:30+08:00",
+      "stage": "finish",
+      "summary": "GitHub同步完成并核验，补齐人物Skill配置与图标，保留完整本次调用记录。"
     }
   ],
   "lessons": [
@@ -33,6 +43,12 @@
     "visual": "not_run: no generation requested"
   },
   "persistence": "saved",
-  "github_sync": "pending",
-  "scope": "GitHub repository synchronization; personal Skill installation not checked in this invocation"
+  "github_sync": {
+    "status": "verified",
+    "commit": "5d2f69f75adbae16a9a17eceacf5364493cffbfc",
+    "scope": "character configuration, icon, README and invocation log"
+  },
+  "scope": "GitHub repository synchronization; personal Skill installation not checked in this invocation",
+  "finished_at": "2026-09-30T18:55:30+08:00",
+  "outcome": "completed: GitHub synchronization verified"
 }
