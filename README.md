@@ -182,6 +182,7 @@ examples/
 character-turnaround-from-image/
 ├── SKILL.md                          # 可单独调用的三视图技能
 ├── agents/openai.yaml
+├── assets/icon.svg
 ├── references/turnaround-workflow.md # 与分镜技能中的模块规则一致
 ├── references/learning-loop.md
 ├── references/runtime-entry.md

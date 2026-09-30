@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "id": "2026-09-30T185004+0800-d31ee60bdd5b",
+  "recorded_at": "2026-09-30T18:50:04+08:00",
+  "timezone": "Asia/Shanghai",
+  "skill": "write-15-second-storyboards",
+  "task_summary": "核对并同步最新版技能规则与调用日志到GitHub",
+  "rules_version": "runtime-rules:1.0",
+  "status": "in_progress",
+  "events": [
+    {
+      "at": "2026-09-30T18:50:04+08:00",
+      "stage": "start",
+      "summary": "核对并同步最新版技能规则与调用日志到GitHub"
+    },
+    {
+      "at": "2026-09-30T18:54:30+08:00",
+      "stage": "sync_check",
+      "summary": "核对两份Skill、参考工作流、脚本与备用规则：生成规则已为最新版。发现独立人物Skill的界面配置和图标尚未同步，已验证配置可解析且图标引用存在，准备补齐并更新README目录说明。"
+    }
+  ],
+  "lessons": [
+    {
+      "type": "no_new_rule",
+      "summary": "本次核对并同步已有最新版，未新增分镜或肤质生成规则。",
+      "evidence": "Skill正文、参考工作流、脚本及备用规则的实际内容一致；补齐人物Skill的界面配置与图标。"
+    }
+  ],
+  "validation": {
+    "text": "passed: existing generation and invocation rules compared with GitHub",
+    "assets": "passed: interface YAML parsed and referenced SVG files parsed",
+    "script": "not_run: scripts unchanged and previously validated",
+    "visual": "not_run: no generation requested"
+  },
+  "persistence": "saved",
+  "github_sync": "pending",
+  "scope": "GitHub repository synchronization; personal Skill installation not checked in this invocation"
+}
