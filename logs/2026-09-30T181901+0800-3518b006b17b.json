@@ -5,7 +5,7 @@
   "timezone": "Asia/Shanghai",
   "skill": "write-15-second-storyboards",
   "task_summary": "更新真实肤质规则，并从每次调用开始记录生成过程，GitHub作为可选副本",
-  "status": "in_progress",
+  "status": "completed",
   "events": [
     {
       "at": "2026-09-30T18:19:01+08:00",
@@ -16,16 +16,50 @@
       "at": "2026-09-30T18:20:02+08:00",
       "stage": "validation",
       "summary": "规则与调用记录工作流已写入两项技能；开始记录已持久保存；两项技能格式检查通过，图像修复仍未解决。"
+    },
+    {
+      "at": "2026-09-30T18:26:37+08:00",
+      "stage": "sync",
+      "summary": "GitHub规则与日志已提交并读取核验；本次记录独立持久保存。分镜个人技能存储更新被422拒绝；独立三视图技能拆开保存。"
+    },
+    {
+      "at": "2026-09-30T18:27:53+08:00",
+      "stage": "finish",
+      "summary": "已实现从每次调用开始记录、无反馈主动复盘、GitHub可选同步；GitHub规则和日志已保存，分镜个人技能更新仍待后台恢复。"
     }
   ],
-  "lessons": [],
+  "lessons": [
+    {
+      "rule_id": "every-invocation-start",
+      "status": "user_requirement",
+      "evidence": "本轮用户明确纠正",
+      "rule": "每次调用开始建立过程记录，不依赖用户反馈或GitHub连接。"
+    },
+    {
+      "rule_id": "skin-no-moire",
+      "status": "user_requirement",
+      "evidence": "用户肤质反馈与实际图像",
+      "rule": "额头自然平滑，保留低对比点状毛孔，排除人工重复网纹。"
+    },
+    {
+      "rule_id": "skin-repair",
+      "status": "pending_validation",
+      "evidence": "之前多次生成仍有残留",
+      "rule": "修复方法尚未成功，下一次需改变策略并实际验收。"
+    }
+  ],
   "validation": {
     "text": "passed",
     "visual": "not_run",
     "previous_skin_repair": "failed"
   },
   "persistence": "saved",
-  "github_sync": "pending",
+  "github_sync": "synced",
   "backfilled": true,
-  "record_note": "本次记录功能在进行中的技能更新里启用；此记录创建于工作中途，不冒称从原请求开始已经记录。以后从调用入口先建立记录。"
+  "record_note": "本次记录功能在进行中的技能更新里启用；此记录创建于工作中途，不冒称从原请求开始已经记录。以后从调用入口先建立记录。",
+  "finished_at": "2026-09-30T18:27:53+08:00",
+  "unresolved": [
+    "分镜个人技能后台保存被拒绝，待保存内容已保留且GitHub副本已更新。",
+    "图像仍存在网状纹理，新规则尚未重新生成验收。"
+  ]
 }
