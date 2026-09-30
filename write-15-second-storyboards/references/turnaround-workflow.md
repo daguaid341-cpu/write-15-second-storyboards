@@ -8,7 +8,7 @@
 
 - 横向资产图；左侧约 42% 宽为正面头肩大头照，右侧约 58% 依次为正面、严格 90° 侧面、真正背面三张全身像。右侧三人等高、从头到鞋完整、脚底同一水平线；同一人物、头身比例、衣服、配饰、发型。自然站姿、手臂放松，不扭胯、不回头。
 - 中性浅灰无缝背景，中性白平衡、低饱和与克制对比。头照等效 100–135mm 正面平视人像透视。大型柔光在前左约 20–30°、略高眼线，弱填充保留眼窝、鼻侧、唇下与下颌浅影。全身视图保持相同机高、近似正交弱透视、光向和曝光。
-- `photographic human skin, fine naturally irregular pores, subtle authentic skin texture, natural skin-tone variation, satin-matte finish, restrained soft highlights, clear eyes and naturally detailed skin`。清晰度优先级：眼睛 → 睫毛眉毛 → 鼻唇 → 皮肤。眼睑与唇线自然清楚；面颊额头柔和，同时保留符合画面尺度的真实纹理。避免油亮、水光、玻璃肌、夸张毛孔、过度磨皮、HDR 锐化和美妆广告轮廓光。肤质标准不能覆盖人物本身的面貌。
+- `photographic human skin, discreet irregular dot-like pores, subtle low-contrast organic skin texture, natural skin-tone variation, satin-matte finish, restrained soft highlights, clear eyes and naturally detailed skin`。清晰度优先级：眼睛 → 睫毛眉毛 → 鼻唇 → 皮肤。眼睑与唇线自然清楚；面颊额头柔和，同时保留符合画面尺度的真实纹理。避免油亮、水光、玻璃肌、夸张毛孔、过度磨皮、HDR 锐化和美妆广告轮廓光。肤质标准不能覆盖人物本身的面貌。
 
 ## 真实肤质：默认生图规则
 
@@ -22,12 +22,23 @@
 
 **默认正向肤质提示词：**
 
-`photographic human facial skin, fine naturally irregular pores appropriate to image scale, subtle authentic skin texture and fine facial vellus hair, natural local skin-tone variation consistent with the reference, age-appropriate eyelid detail and fine lip lines, dry natural satin-matte finish with restrained soft highlights, realistic soft-light scattering and tonal transitions, clear eyes and naturally detailed skin, preserved facial identity and age, no beauty retouching`
+`photographic human facial skin, fine naturally irregular pores appropriate to image scale, subtle low-contrast organic skin texture, natural local skin-tone variation consistent with the reference, age-appropriate eyelid detail and fine lip lines, dry natural satin-matte finish with restrained soft highlights, realistic soft-light scattering and tonal transitions, clear eyes and naturally detailed skin, preserved facial identity and age, no beauty retouching`
 
 **默认负面肤质控制：**
 
-`AI beauty smoothing, airbrushed skin, waxy skin, plastic skin, rubber skin, porcelain doll face, CGI face, oily or wet-looking skin, glass skin, featureless flat matte skin, oversized or oversharpened pores, uniform repeated pore pattern, gritty noise painted onto the face, sharpening halos, excessive HDR micro-contrast, invented blemishes, altered age or skin tone, identity drift`
+`AI beauty smoothing, airbrushed skin, waxy skin, plastic skin, rubber skin, porcelain doll face, CGI face, oily or wet-looking skin, glass skin, featureless flat matte skin, oversized or oversharpened pores, uniform repeated pore pattern, moire-like skin pattern, repetitive wavy lines, crosshatched skin, fingerprint-like ridges, embossed leather texture, synthetic pore map, gritty noise painted onto the face, sharpening halos, excessive HDR micro-contrast, invented blemishes, altered age or skin tone, identity drift`
 
+
+## 防止摩尔纹式伪肤质
+
+将“真实”落实为符合人物年龄、面部区域、拍摄距离和光线的自然表面，不能简单理解成纹理越多越真实。额头默认自然平滑，毛孔是细小、低对比、不规则的点状或浅凹结构；面颊、鼻翼与额头的纹理密度有差异，正常观看距离下不应出现密集线条覆盖。真实存在的年龄纹、表情纹、眼周细节与唇纹按参考和剧情保留，不将所有自然细纹一律消除。
+
+明确排除额头、面颊、下巴和颈部上重复波纹、交叉网纹、摩尔纹式干涉纹、指纹状沟槽、织物纹、皮革压纹及人为叠加的整脸毛孔贴图。不要以锐化、颗粒、密集绒毛或雕刻感替代真人皮肤。把控真实光照、细微肤色与体积层次优先于堆叠毛孔词；只在实际可见尺度上保留少量自然细节，不能把减少伪纹理等同于美容磨皮。
+
+修正图时区分“保留身份结构”与“复制有缺陷的肤质”。提示只锁定脸型五官、年龄、发型、衣装和构图，不要求逐像素保留异常皮肤；必要时重建受影响表面。若定向修改后仍保留纹路，记录失败并改变策略，例如以同一身份参考重新生成该区域，而非继续堆叠相同正负词。未经实际检查并通过，不承诺已完全修复或把此方法标为成功。
+
+默认正向补充：`naturally smooth forehead appropriate to age, discreet irregular dot-like pores only where visible at this scale, low-contrast organic skin detail, region-specific texture, realistic gentle shading and local color variation; preserve genuine expression lines and lip detail`。
+默认负面补充：`moire-like skin pattern, repetitive wavy lines, crosshatched skin, fingerprint-like ridges, woven mesh skin, embossed leather texture, all-over wrinkle overlay, synthetic pore map`。
 
 ## 主提示词模板
 
@@ -43,6 +54,6 @@ Neutral light-gray seamless studio background. Large soft key front-left at roug
 
 ## 精简负面控制与检查
 
-`different person, identity drift, altered facial proportions, generic beauty template, different outfit or hairstyle, oily/glass/dewy skin, strong specular highlights, beauty advertisement, ring light, oversharpened pores, waxy over-smoothed skin, plastic/porcelain/CGI face, flat featureless matte skin, repeated pore patterns, gritty noise painted onto skin, invented blemishes or wrinkles, altered age or skin tone, 3/4 view instead of strict side, turned back view, cropped feet, mismatched heights, fashion pose, text, watermark`
+`different person, identity drift, altered facial proportions, generic beauty template, different outfit or hairstyle, oily/glass/dewy skin, strong specular highlights, beauty advertisement, ring light, oversharpened pores, waxy over-smoothed skin, plastic/porcelain/CGI face, flat featureless matte skin, repeated pore patterns, moire-like skin patterns, crosshatched mesh skin, repetitive wavy ridges, woven or leather texture, gritty noise painted onto skin, invented blemishes or wrinkles, altered age or skin tone, 3/4 view instead of strict side, turned back view, cropped feet, mismatched heights, fashion pose, text, watermark`
 
 平台有独立负面栏时单独放入，否则只把关键限制写进主提示词。参考权重和 Face ID 参数因平台而异，不能编造通用百分比。交付前核对脸、顺序、严格侧面、真正背面、脚、衣饰、肤质；近景检查自然毛孔、唇纹和区域纹理差异，禁止油光、磨皮、重复毛孔、CG脸与伪造粗颗粒；若用户需要精确建模，可分别生成和核验各视角，单张拼版不可视为未观测面的精确测量。

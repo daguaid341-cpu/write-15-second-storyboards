@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "id": "2026-09-30T181302+0800-skin-moire-feedback",
+  "recorded_at": "2026-09-30T18:13:02+08:00",
+  "timezone": "Asia/Shanghai",
+  "skills": [
+    "write-15-second-storyboards",
+    "character-turnaround-from-image"
+  ],
+  "task_type": "skill_update_from_image_feedback",
+  "feedback_summary": "用户要求额头与面部符合现实人脸状态，去除类似摩尔纹的重复纹路；授权每次调用后记录经验并同步更新生成规则。",
+  "observed_issue": "已显示的人物设定图在额头、面颊及颈部有人工网状或重复线状纹理；不能作为已达标的真人肤质。",
+  "attempt_summary": [
+    "曾用定向编辑减少重复细纹。",
+    "再次要求去除连接线网并重建自然表面。",
+    "随后尝试以身份参考重建肤质；结果仍残留人工纹理。"
+  ],
+  "lessons": [
+    {
+      "rule_id": "skin-natural-scale",
+      "evidence_type": "explicit_user_feedback_and_observed_output",
+      "rule": "真实肤质服从年龄、区域、光线和观看尺度；额头自然平滑，毛孔是低对比不规则点状细节，不把纹理越多当作越真实。",
+      "status": "user_requirement"
+    },
+    {
+      "rule_id": "skin-no-moire",
+      "evidence_type": "explicit_user_feedback_and_observed_output",
+      "rule": "排除摩尔纹式波纹、交叉网纹、指纹状沟槽、织物/皮革压纹及整脸纹理贴图，同时保留真实年龄纹、表情细节和唇纹。",
+      "status": "user_requirement"
+    },
+    {
+      "rule_id": "skin-repair-strategy",
+      "evidence_type": "unsuccessful_generation_attempts",
+      "rule": "同一编辑策略反复保留缺陷时应改变生成方法；保留身份结构不等于保留错误肤质。新方法须实际检查，不能凭提示词宣称修复成功。",
+      "status": "pending_validation"
+    },
+    {
+      "rule_id": "feedback-loop",
+      "evidence_type": "explicit_user_authorization",
+      "rule": "每次调用开始立即建档并持久保存，过程记录阶段摘要，无用户反馈也主动复盘；GitHub仅为可选同步副本，连接不可用不影响记录启动。",
+      "status": "user_requirement"
+    }
+  ],
+  "changed_paths": [
+    "write-15-second-storyboards/SKILL.md",
+    "write-15-second-storyboards/references/turnaround-workflow.md",
+    "write-15-second-storyboards/references/learning-loop.md",
+    "character-turnaround-from-image/SKILL.md",
+    "character-turnaround-from-image/references/turnaround-workflow.md",
+    "character-turnaround-from-image/references/learning-loop.md",
+    "README.md",
+    "logs/2026-09-30T181302+0800-skin-moire-feedback.json",
+    "logs/README.md",
+    "write-15-second-storyboards/scripts/record_invocation.py",
+    "character-turnaround-from-image/scripts/record_invocation.py"
+  ],
+  "validation": {
+    "skill_format": "passed",
+    "patch_whitespace": "passed",
+    "new_prompt_visual": "not_run",
+    "previous_image_repair": "failed",
+    "github_write": "verify_after_upload"
+  },
+  "unresolved": [
+    "最新图像仍有人工网状细纹；本次只更新规则和日志，未重新生成验收图。"
+  ],
+  "next_strategy": "下次生成减少全脸纹理强化词，使用自然平滑额头与低对比点状毛孔；若编辑延续缺陷则换用身份约束下的表面重建，实际查看后决定是否通过。",
+  "backfilled": true
+}

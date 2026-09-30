@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "id": "2026-09-30T181901+0800-3518b006b17b",
+  "recorded_at": "2026-09-30T18:19:01+08:00",
+  "timezone": "Asia/Shanghai",
+  "skill": "write-15-second-storyboards",
+  "task_summary": "更新真实肤质规则，并从每次调用开始记录生成过程，GitHub作为可选副本",
+  "status": "in_progress",
+  "events": [
+    {
+      "at": "2026-09-30T18:19:01+08:00",
+      "stage": "start",
+      "summary": "更新真实肤质规则，并从每次调用开始记录生成过程，GitHub作为可选副本"
+    },
+    {
+      "at": "2026-09-30T18:20:02+08:00",
+      "stage": "validation",
+      "summary": "规则与调用记录工作流已写入两项技能；开始记录已持久保存；两项技能格式检查通过，图像修复仍未解决。"
+    }
+  ],
+  "lessons": [],
+  "validation": {
+    "text": "passed",
+    "visual": "not_run",
+    "previous_skin_repair": "failed"
+  },
+  "persistence": "saved",
+  "github_sync": "pending",
+  "backfilled": true,
+  "record_note": "本次记录功能在进行中的技能更新里启用；此记录创建于工作中途，不冒称从原请求开始已经记录。以后从调用入口先建立记录。"
+}
