@@ -6,7 +6,7 @@
 
 ## 调用开始 先建记录再工作
 
-1. 读取当前可访问的技能规则和本工作流，立即运行 `scripts/record_invocation.py start --skill <技能名> --task "<简短任务摘要>" --output-dir <当前工作区的日志目录>`，在任何剧情分析、提示词编排或生成动作前创建唯一JSON记录，状态为started。不等待反馈、生成成功或新规则产生。除非平台实际提供旧状态，不声称看过缺失对话或全部历史。
+1. 读取当前可访问的技能规则和本工作流，立即运行 `scripts/record_invocation.py start --skill <技能名> --task "<简短任务摘要>" --rules-version "<实际读取版本或unversioned>" --output-dir <当前工作区的日志目录>`，在任何剧情分析、提示词编排或生成动作前创建唯一JSON记录，状态为started。不等待反馈、生成成功或新规则产生。除非平台实际提供旧状态，不声称看过缺失对话或全部历史。
 2. 默认通过可用持久存储保存记录：有ChatGPT Library时按library技能创建日志文件，保存返回身份后，后续更新同一文件；没有Library但有可写的个人技能后台或用户指定持久目录时保存到该处。临时文件只能作工作副本。当前无持久写入能力时仍创建待保存本地记录，标为persistence_pending，完成不受影响任务并明确尚未持久保存，不能称已入后台。
 3. 首次写入成功后立即进入任务，不为GitHub连接、登录或上传暂停。GitHub存在时可顺带核对最新规则；不可用时沿用已实际读取版本。后续恢复可用连接时再去重同步。用户明确禁止任何日志、取消授权或限制记录范围时遵守当前指令。
 
@@ -22,7 +22,7 @@
 1. 比较任务目标、原提示词与实际结果，区分用户明确要求、观察事实、待验证假设。提炼可复用生成规则，无需等用户指出问题。明确新规则时修改技能正文、参考工作流或模板；没有新规则也用no_new_rule结束日志，不虚构学习成果。
 2. 同一规则去重，记录来源与适用范围；用户最新要求覆盖旧规则。成功经验与失败/待验证方法分别标记，不把局部人物和场景设定当通用默认。保持既有身份、剧情、动作、对白、风格与声音约束。
 3. 验证文件格式、差异和关联模板，实际生成检查另记。使用 `finish --status completed|failed|interrupted --summary "<结果摘要>"`结束本地记录，再更新同一持久文件；保存失败保留待保存状态。
-4. 个人技能更新按skill-creator的规范单独验证和保存。技能本体持久更新不依赖用户GitHub；若当前技能目录或个人技能后台不可写，保留待更新差异并说明，下次恢复时补做。禁止将未保存工作说成已生效。
+4. 个人技能更新按skill-creator的规范单独验证和保存。技能本体持久更新不依赖用户GitHub；若当前技能目录或个人技能后台不可写，按runtime-entry.md将新规则与变更依据写回同一份可访问的《分镜与人物生成运行规则》，保留待更新差异并标记skill_update_pending；下次恢复时核对最新版补做。备用规则保存成功与个人Skill安装成功分别记录。禁止将未保存工作说成已生效。
 
 ## GitHub 作为可选副本
 
@@ -32,6 +32,6 @@
 
 ## 记录格式与隐私
 
-脚本以真实上海时间和唯一id生成JSON；不补造过去调用记录。历史调用只有有证据时可补记，注明backfilled与真实记录时间。schema_version、id、recorded_at、timezone、skill、task_summary、status、events、lessons、validation、persistence、github_sync为最小字段。events含时间、阶段和摘要。lessons使用user_requirement、verified、pending_validation或no_new_rule，记录证据与适用范围。validation区分文本和视觉结果。
+脚本以真实上海时间和唯一id生成JSON；不补造过去调用记录。历史调用只有有证据时可补记，注明backfilled与真实记录时间。schema_version、id、recorded_at、timezone、skill、task_summary、rules_version、status、events、lessons、validation、persistence、github_sync为最小字段。events含时间、阶段和摘要。lessons使用user_requirement、verified、pending_validation或no_new_rule，记录证据与适用范围。validation区分文本和视觉结果。
 
 默认只记录脱敏任务与过程摘要，不保存完整聊天、私人剧本、人物图片、个人信息、凭据或原始工具输出。GitHub仓库公开，复制的日志不得包含私密材料。持久存储文件身份和版本由存储工具管理，不写入公开日志。无法读取旧日志时明确本轮上下文有限，不假称持续记住全部经历。

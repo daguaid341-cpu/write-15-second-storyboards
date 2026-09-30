@@ -150,6 +150,14 @@ GitHub是可选同步副本，连接与写权限不可用也照常开始记录�
 
 仓库公开，仅同步脱敏任务、过程与经验摘要，不上传完整聊天、私人剧本、人物参考图或凭据。
 
+## 备用规则入口与保存状态
+
+每次调用先保存起始记录，再读取可用最新版规则；主动检查结果并将有依据的新规则写回对应正文、模板和检查项。记录脚本可用--rules-version注明实际读取版本，未知时记unversioned。
+
+两项技能均提供[运行入口与保存核验](write-15-second-storyboards/references/runtime-entry.md)。原个人Skill入口保存失败时，可使用独立的《分镜与人物生成运行规则》继续执行和更新，同一规则文件保留版本历史；原Skill安装状态另记skill_update_pending。GitHub连接仍然可选，不阻塞调用开始、记录和生成。
+
+分别核验“日志保存”“备用规则更新”“个人Skill安装更新”“GitHub同步”。初次保存成功后，还须确认后台最终文件仍在并含本次规则，不能将仓库文件更新称为个人Skill安装恢复。
+
 ## 标准化文件结构
 
 ```text
@@ -161,9 +169,12 @@ write-15-second-storyboards/
 │   └── icon.svg                     # 技能图标
 ├── references/
 │   ├── script-continuity.md         # 整剧理解、多人连续性与穿帮核查流程
-│   └── turnaround-workflow.md        # 人物身份、真实肤质和正侧背生成模板
+│   ├── turnaround-workflow.md       # 人物身份、真实肤质和正侧背生成模板
+│   ├── learning-loop.md              # 每次调用记录与主动复盘
+│   └── runtime-entry.md              # 备用规则入口与保存核验
 └── scripts/
-    └── ensure_local_notice.py       # 本地调用前确保作者注释存在
+    ├── ensure_local_notice.py       # 本地调用前确保作者注释存在
+    └── record_invocation.py         # 开始、阶段与结束记录
 
 examples/
 └── dinner-scene.md                  # 仓库级虚构演示，不属于运行时必需文件
@@ -172,6 +183,9 @@ character-turnaround-from-image/
 ├── SKILL.md                          # 可单独调用的三视图技能
 ├── agents/openai.yaml
 ├── references/turnaround-workflow.md # 与分镜技能中的模块规则一致
+├── references/learning-loop.md
+├── references/runtime-entry.md
+├── scripts/record_invocation.py
 └── scripts/ensure_local_notice.py
 ```
 

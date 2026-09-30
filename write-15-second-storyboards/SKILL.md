@@ -79,4 +79,4 @@ description: Ingest screenplays and create continuity-checked 15-second live-act
 
 ## 从每次调用开始记录与主动复盘
 
-每次调用先读取 [调用记录与生成复盘](references/learning-loop.md)，运行scripts/record_invocation.py创建started记录并保存到可用持久存储，再开始任务。过程持续记录脱敏阶段摘要、生成尝试、检查和修订，结束时主动复盘并更新可复用规则；没有用户反馈或新规则也要记录。GitHub仅为可选同步副本，不是启动或持久记录的必要条件；缺少持久能力时明确标记待保存。区分文件验证与生成效果验证，不记录隐藏推理过程，不声称重新训练模型或持续监听后台。
+每次调用先读取 [调用记录与生成复盘](references/learning-loop.md)，运行scripts/record_invocation.py创建started记录并保存到可用持久存储。随后读取 [运行入口与保存核验](references/runtime-entry.md)，按实际可读的最新版规则开始任务；原个人Skill入口不可用时，可读取《分镜与人物生成运行规则》作为备用入口，并将新增规则写回同一规则文件。过程持续记录脱敏阶段摘要、生成尝试、检查和修订，结束时主动复盘并更新可复用规则；没有用户反馈或新规则也要记录。GitHub仅为可选同步副本，不是启动或持久记录的必要条件；缺少持久能力时明确标记待保存。区分文件验证与生成效果验证，不记录隐藏推理过程，不声称重新训练模型或持续监听后台。

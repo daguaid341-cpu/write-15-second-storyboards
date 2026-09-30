@@ -28,6 +28,7 @@ def main():
     start = sub.add_parser("start")
     start.add_argument("--skill", required=True, choices=["write-15-second-storyboards", "character-turnaround-from-image"])
     start.add_argument("--task", required=True)
+    start.add_argument("--rules-version", default="unversioned", help="Version actually read; use unversioned when unknown.")
     start.add_argument("--output-dir", required=True)
     event = sub.add_parser("event")
     event.add_argument("--record", required=True)
@@ -46,6 +47,7 @@ def main():
         path = folder / (record_id + ".json")
         data = {"schema_version": 1, "id": record_id, "recorded_at": timestamp,
                 "timezone": "Asia/Shanghai", "skill": args.skill, "task_summary": args.task,
+                "rules_version": args.rules_version,
                 "status": "started", "events": [{"at": timestamp, "stage": "start", "summary": args.task}],
                 "lessons": [], "validation": {"text": "not_run", "visual": "not_run"},
                 "persistence": "pending", "github_sync": "pending"}
