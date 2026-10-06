@@ -21,6 +21,9 @@ Local changes:
   and slash-normalized HTML asset paths.
 - Correct the storyboard workflow's obsolete `maxShotSeconds` reference
   to `maxSegmentSeconds`, and test a configured 30-second segment cap.
+- Route shared workflow instructions through separate host live-action and
+  comic modes; neither the source anime preset nor photographic defaults
+  override the chosen mode. The mode adapter is in the host scripts.
 
 Rui-Skills uses a 30-second delivery group. A delivery group may contain
 multiple generation segments when the chosen video model has a shorter
