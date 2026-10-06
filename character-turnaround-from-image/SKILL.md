@@ -1,6 +1,6 @@
 ---
 name: character-turnaround-from-image
-description: Analyze a newly uploaded single-person image and create a photorealistic character sheet with a large frontal headshot plus front, strict 90-degree side, and back full-body views. Use for 人物三视图、角色设定图、正侧背资产图、锁脸、丢图生成三视图, direct image generation or reusable prompts; preserve identity with soft satin-matte skin and sharp eyes.
+description: Create photorealistic character sheets from a current person reference, or manage original character reference assets with anchor, independent views, versions and stale-image tracking. Use for 人物三视图、角色设定图、正侧背、锁脸、角色参考图管理; preserve identity and natural skin.
 ---
 
 <!-- 谢谢你用我的技能 我叫瑞 -->
@@ -22,7 +22,11 @@ description: Analyze a newly uploaded single-person image and create a photoreal
 4. 用户说「生成三视图」「丢图出图」等图像请求时，使用可用图像生成工具传入当前参考图并直接出图；只要「提示词」时输出依据当前图填好的主提示词与简短负面词，不留占位符。两者都要则两者都交付。无法生图时说明并给可复制提示词。
 5. 检查是否同一个人、左侧头部足够大、右侧三人头脚完整且等高、侧面恰好 90°、背面不回头、服装配饰一致、肤质符合画面尺度，近景保留细微真实纹理，无油光、磨皮、塑料感或重复毛孔。按可见缺陷修订并重试一次；单张照片无法证明不可见角度和鞋款，不承诺 100% 锁脸。
 
-此任务不自动写成 15 秒视频分镜。用户同时要求视频时可再调用分镜流程。
+此任务不自动写成视频分镜。用户同时要求视频时，可调用 `$rui-skills` 的默认30秒分镜流程。
+
+## 可选：独立角色参考图与版本管理
+
+用户要求分开生成参考图、单张重出、追踪锚点版本，或从文字建立原创人物时，读取 [角色资产管理](references/character-assets.md)。模块随本技能分发，无需安装主技能。默认仍是原浅灰拼版；独立资产使用同一正面全身锚点派生各角度，保留历史版本，锚点、描述或画风变化后标记旧图过期。当前上传图必须作为真实图像输入，不能用文字新脸替代。使用本会话可用图像工具生成后登记实际文件，文件检查与视觉验收分开记录。
 
 ## 从每次调用开始记录与主动复盘
 

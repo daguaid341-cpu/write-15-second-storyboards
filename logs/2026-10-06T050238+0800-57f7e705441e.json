@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "id": "2026-10-06T050238+0800-57f7e705441e",
+  "recorded_at": "2026-10-06T05:02:38+08:00",
+  "timezone": "Asia/Shanghai",
+  "skill": "rui-skills",
+  "task_summary": "整合制作模块，主技能更名Rui-Skills，默认分镜组改为30秒",
+  "rules_version": "runtime-rules:2.0",
+  "status": "in_progress",
+  "backfilled": true,
+  "recording_note": "在跨日继续任务时建立此记录；此前已完成仓库读取、主入口更名与部分模块导入，不补造先前事件时间。",
+  "events": [
+    {
+      "at": "2026-10-06T05:02:38+08:00",
+      "stage": "start",
+      "summary": "整合制作模块，主技能更名Rui-Skills，默认分镜组改为30秒"
+    },
+    {
+      "at": "2026-10-06T13:10:35+08:00",
+      "stage": "validation",
+      "summary": "Rui-Skills、30秒流程、六个制作模块与独立人物包已完成；全部本地回归通过，准备同步 GitHub。"
+    }
+  ],
+  "lessons": [],
+  "validation": {
+    "text": "passed",
+    "visual": "not_run",
+    "details": "1571 deterministic module and integration checks passed; packaging, links, 30-second example, invocation-log lifecycle, and both official skill validators passed. No real image or video generation."
+  },
+  "persistence": "workspace_saved",
+  "github_sync": "pending"
+}

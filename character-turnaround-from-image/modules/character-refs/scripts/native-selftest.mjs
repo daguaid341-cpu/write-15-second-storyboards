@@ -1,0 +1,48 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { tmpdir } from 'node:os';
+import { fileURLToPath } from 'node:url';
+import { assetFromIntake, current, staleReasons } from './core.mjs';
+import { solidPng } from './png.mjs';
+import { findLook, lookSnapshot } from './looks.mjs';
+import { prepare, importImage, review } from './native-assets.mjs';
+const here = path.dirname(fileURLToPath(import.meta.url));
+const intake = JSON.parse(fs.readFileSync(path.join(here, '../examples/阿禾-intake.json'), 'utf8'));
+const temp = fs.mkdtempSync(path.join(tmpdir(), 'rui-native-'));
+const file = path.join(temp, 'asset.json'), png = path.join(temp, 'actual.png'), ticket = path.join(temp, 'ticket.json');
+const read = () => JSON.parse(fs.readFileSync(file, 'utf8'));
+const save = obj => fs.writeFileSync(file, JSON.stringify(obj));
+const writeTicket = (view, opts) => fs.writeFileSync(ticket, JSON.stringify(prepare(file, view, opts)));
+let n = 0;
+const ok = (v, label) => {assert.ok(v, label); n++;};
+try {
+  save(assetFromIntake(intake, lookSnapshot(findLook('写实'))));
+  fs.writeFileSync(png, solidPng(400, 600));
+  writeTicket('front-full', {referenceFiles: [png]});
+  const front = importImage(file, 'front-full', png, ticket);
+  ok(front.visualReview.status === 'not_run', 'Import is not visual approval');
+  ok(front.provenance.originalReferences.length === 1, 'Original-reference provenance preserved');
+  assert.throws(() => prepare(file, 'side-full'), /确认/); n++;
+  review(file, 'front-full', {status: 'passed', note: 'synthetic file fixture, no human-face assertion'});
+  writeTicket('side-full');
+  const side = importImage(file, 'side-full', png, ticket);
+  ok(side.refs[0].view === 'front-full' && side.refs[0].v === 1, 'Derived view references root');
+  writeTicket('front-full');
+  importImage(file, 'front-full', png, ticket);
+  ok(staleReasons(read(), 'default', 'side-full').length > 0, 'New root marks old derived view stale');
+  ok(fs.existsSync(path.join(temp, 'default/front-full.v1.png')), 'Old version is preserved');
+  writeTicket('front-full');
+  const changed = read(); changed.layers.face.en += ' changed'; save(changed);
+  assert.throws(() => importImage(file, 'front-full', png, ticket), /已变化/); n++;
+  ok(current(read().outfits.default, 'front-full').v === 2, 'Rejected import cannot advance version');
+  const snapshot = fs.readFileSync(file);
+  fs.writeFileSync(png, 'not a PNG'); writeTicket('front-full');
+  assert.throws(() => importImage(file, 'front-full', png, ticket), /PNG/); n++;
+  assert.deepEqual(fs.readFileSync(file), snapshot); n++;
+  assert.throws(() => prepare(file, 'front-full', {outfit: '../escape'}), /ID/); n++;
+} finally {
+  assert.ok(path.resolve(temp).startsWith(path.resolve(tmpdir()) + path.sep));
+  fs.rmSync(temp, {recursive: true, force: true});
+}
+console.log(`PASS ${n} native asset lifecycle checks (synthetic PNG fixtures; no image service)`);

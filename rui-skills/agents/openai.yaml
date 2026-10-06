@@ -1,0 +1,13 @@
+interface:
+  display_name: "Rui-Skills"
+  short_description: "将故事转成30秒分镜，拓展大纲、角色、场景道具、剧本与参考图管理"
+  default_prompt: "使用 $rui-skills 将我的故事写成保持人物与场景连续性的30秒分镜，按需生成大纲、角色与场景道具设定。"
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

@@ -1,0 +1,12 @@
+# Private/generated production data must stay in the user's project directory.
+.env
+.env.*
+config.local.json
+.gates.jsonl
+__pycache__/
+*.pyc
+node_modules/
+*-report.html
+character-refs.html
+output/
+dist/

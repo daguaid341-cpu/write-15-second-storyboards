@@ -1,6 +1,6 @@
 # 每次技能调用的过程记录
 
-每次实际使用write-15-second-storyboards或character-turnaround-from-image，从调用开始建立记录，不等待用户反馈、生成成功或新规则出现。执行中记录需求、资料读取、生成尝试、检查与修订的简短事件，结束时主动复盘并记录结果。日志不包含隐藏推理过程。
+每次实际使用rui-skills或character-turnaround-from-image，从调用开始建立记录，不等待用户反馈、生成成功或新规则出现。执行中记录需求、资料读取、生成尝试、检查与修订的简短事件，结束时主动复盘并记录结果。日志不包含隐藏推理过程。
 
 日志先保存到当前环境可用的持久存储，GitHub仅为可选副本，不以连接GitHub为开始条件。没有持久写入能力时标为待保存，不称已入后台；GitHub不可用时标为待同步，恢复后按唯一id补传。能力说明见两项技能的references/learning-loop.md，入口脚本为scripts/record_invocation.py。
 
