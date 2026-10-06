@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "id": "2026-10-06T195129+0800-065b957acda0",
+  "recorded_at": "2026-10-06T19:51:29+08:00",
+  "timezone": "Asia/Shanghai",
+  "skill": "rui-skills",
+  "task_summary": "查找并观看Higgsfield北极之息短片，反推真人剧光影提示词并更新技能",
+  "rules_version": "runtime-rules:2.1",
+  "status": "completed",
+  "events": [
+    {
+      "at": "2026-10-06T19:51:29+08:00",
+      "stage": "start",
+      "summary": "查找并观看Higgsfield北极之息短片，反推真人剧光影提示词并更新技能"
+    },
+    {
+      "at": "2026-10-06T20:05:37+08:00",
+      "stage": "reference_visual_review",
+      "summary": "用户确认ANERNEQ；已检查官方公开版20分02秒全时间线的1202张逐秒画面，以及四段4秒、4fps密集帧。按夜外火光、日光雪原、洞穴、阴天、暮色与极光分别记录观察；未检查音轨或遮挡版本之外的素材。"
+    },
+    {
+      "at": "2026-10-06T20:11:45+08:00",
+      "stage": "validation",
+      "summary": "新增ANERNEQ光影参考与5类原创场景模板，接入真人剧流程、默认导出、技能UI描述、README及备用规则2.2。1590项模块及集成检查、Python记录测试和官方技能校验通过；源数据、自定义风格/统一提示词及漫剧隔离通过。生成效果尚未执行。"
+    },
+    {
+      "at": "2026-10-06T20:15:47+08:00",
+      "stage": "github_verification",
+      "summary": "主分支已指向功能提交；远端文件树与本地提交一致；README、光影参考和技能UI描述逐字读取匹配。影片素材未提交。"
+    },
+    {
+      "at": "2026-10-06T20:15:48+08:00",
+      "stage": "finish",
+      "summary": "官方公开版全时间线画面分析与真人剧光影蒸馏完成；原创场景模板、默认导出、技能与README描述及备用规则2.2已同步并核验。实际生成效果和个人技能安装未验证；GitHub About仍待元数据写权限。"
+    }
+  ],
+  "lessons": [
+    {
+      "type": "user_requirement",
+      "summary": "将用户确认的ANERNEQ光影参考蒸馏到真人剧技能并同步GitHub",
+      "scope": "真人剧场景提示词；漫剧和中性人物参考图不默认应用"
+    },
+    {
+      "type": "verified",
+      "summary": "原片包含夜景、日光、阴天、暗室与极光；局部照明、阴影和材质关系随场景变化",
+      "evidence": "官方公开版全时间线逐秒画面及四段密集帧实际检查",
+      "scope": "本次已检查版本的画面观察"
+    },
+    {
+      "type": "pending_validation",
+      "summary": "原创提示词通过光源地图、受光面、遮挡及跨镜曝光约束迁移视觉方法",
+      "evidence": "文件和导出检查通过；未调用生成模型",
+      "scope": "真人剧实际生成效果待验收"
+    }
+  ],
+  "validation": {
+    "text": "passed",
+    "visual": "not_run",
+    "reference_visual": "completed_full_timeline_frame_analysis",
+    "module_and_integration_checks": 1590,
+    "runtime_record_test": "passed",
+    "official_skill_validation": "passed",
+    "packaging_links": "passed",
+    "custom_prompt_and_mode_isolation": "passed"
+  },
+  "persistence": "saved_to_user_workspace",
+  "github_sync": "verified",
+  "reference_review": {
+    "source": "https://higgsfield.ai/@higgsfield.studio/projects/anerneq",
+    "version": "official public project stream",
+    "duration_seconds": 1202,
+    "sampled_frames": 1202,
+    "sampling_fps": 1,
+    "contact_sheets_reviewed": 51,
+    "dense_checks": [
+      {
+        "start_seconds": 68,
+        "duration_seconds": 4,
+        "sampling_fps": 4,
+        "frames_reviewed": 16
+      },
+      {
+        "start_seconds": 552,
+        "duration_seconds": 4,
+        "sampling_fps": 4,
+        "frames_reviewed": 16
+      },
+      {
+        "start_seconds": 572,
+        "duration_seconds": 4,
+        "sampling_fps": 4,
+        "frames_reviewed": 16
+      },
+      {
+        "start_seconds": 1012,
+        "duration_seconds": 4,
+        "sampling_fps": 4,
+        "frames_reviewed": 16
+      }
+    ],
+    "audio_reviewed": false,
+    "obscured_or_alternative_version_reviewed": false,
+    "raw_media_distributed": false
+  },
+  "github_verification": {
+    "repository": "daguaid341-cpu/write-15-second-storyboards",
+    "branch": "main",
+    "verified_feature_commit": "da1b80d8da95f4979f16b0cec8ab9d5630109fbd",
+    "tree_sha": "91a3bbe339f435cfd0807aef04275e5d7fd0f064",
+    "tree_matches_local_commit": true,
+    "files_read_back": [
+      "README.md",
+      "rui-skills/references/anerneq-lighting.md",
+      "rui-skills/agents/openai.yaml"
+    ],
+    "status": "passed"
+  },
+  "rules_updated_to": "runtime-rules:2.2",
+  "installation": "personal_skill_installation_not_verified",
+  "repository_about": "pending_metadata_write_permission; README and skill UI descriptions updated",
+  "finished_at": "2026-10-06T20:15:48+08:00"
+}
