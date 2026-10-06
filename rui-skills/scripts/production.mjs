@@ -15,8 +15,10 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const moduleDir = path.resolve(here, '../modules');
 export const FILES = {outline: 'outline/outline.json', cast: 'characters/cast.json', art: 'art/art.json', script: 'script/script.json', storyboard: 'storyboard/storyboard.json'};
 const MODULES = ['novel-outline', 'novel-characters', 'novel-art', 'novel-script', 'novel-storyboard'];
+// Distilled lighting relationships; scene details and explicit unified prompts stay authoritative.
+const LIVE_LIGHTING = '以本场已有光源决定受光面，明暗随距离、朝向和遮挡变化；按昼夜与天气保持曝光，保留阴影层次和关键表演可读性，不全局套青橙滤镜。';
 const PROFILES = {
-  'live-action': {label: '真人剧', prompt: '9:16，真人短剧，自然肤色，真实克制表演。', constraints: '保持身份、衣饰、人数、轴线和道具归属'},
+  'live-action': {label: '真人剧', prompt: `9:16，真人短剧，自然肤色，真实克制表演。${LIVE_LIGHTING}`, constraints: '保持身份、衣饰、人数、轴线、道具归属和本场光源方位；遮挡与曝光连续'},
   comic: {label: '漫剧', prompt: '9:16，2D动漫短剧，清晰线条与统一色板，角色造型和上色稳定，动画姿态与反应清楚。', constraints: '保持角色造型、头身比、线条、色板、衣饰、人数、轴线和道具归属'},
 };
 export function resolveProduction(project, {mode} = {}) {
@@ -29,7 +31,7 @@ export function resolveProduction(project, {mode} = {}) {
   // A command-line switch selects another mode without copying the saved mode's style.
   const style = settings.style && (!mode || !settings.mode || mode === settings.mode) ? settings.style.trim() : '';
   const profile = PROFILES[selected];
-  const prompt = style ? `9:16，${profile.label}；画风/质感：${style}。${selected === 'comic' ? '角色造型、线条、色板和上色一致。' : '自然肤色，真实克制表演。'}` : profile.prompt;
+  const prompt = style ? `9:16，${profile.label}；画风/质感：${style}。${selected === 'comic' ? '角色造型、线条、色板和上色一致。' : '自然肤色，真实克制表演。按指定风格与本场已有光源组织受光面和阴影，保持跨镜光源方位与曝光连续。'}` : profile.prompt;
   return {mode: selected, ...profile, prompt, style};
 }
 export function loadProject(dir) {

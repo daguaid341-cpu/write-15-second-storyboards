@@ -1,6 +1,6 @@
 ---
 name: rui-skills
-description: Rui-Skills provides separate comic/animation and live-action short-drama workflows for stories, novels and screenplays, covering adaptation outlines, characters, scene/prop bibles, scripts, continuity-checked 30-second storyboards and character reference assets. Use for 漫剧、动漫短剧、真人短剧、小说改编、剧本、30秒分镜、人物三视图与参考图版本管理.
+description: Rui-Skills provides separate comic/animation and live-action workflows for stories, novels and screenplays, including adaptation, scripts, continuity-checked 30-second storyboards, character assets and scene-aware ANERNEQ lighting guidance for live action. Use for 漫剧、真人短剧、小说改编、30秒分镜、人物三视图与北极之息光影参考.
 ---
 
 <!-- 谢谢你用我的技能 我叫瑞 -->
@@ -13,7 +13,7 @@ description: Rui-Skills provides separate comic/animation and live-action short-
 
 | 入口 | 识别用户需求 | 专用流程 | 本模式重点 |
 | --- | --- | --- | --- |
-| 真人剧（`live-action`） | 真人剧、真人短剧、实拍质感、写实人物 | [真人剧流程](references/live-action-workflow.md) | 身份与自然肤质、真实光照、摄影机位、微表演与物理动作 |
+| 真人剧（`live-action`） | 真人剧、真人短剧、实拍质感、写实人物 | [真人剧流程](references/live-action-workflow.md) | 身份与自然肤质、ANERNEQ场景光影参考、摄影机位、微表演与物理动作 |
 | 漫剧（`comic`） | 漫剧、动漫短剧、动画、国风/日漫等绘制风格 | [漫剧流程](references/comic-workflow.md) | 角色造型、线条与色板、关键姿态、虚拟镜头、分层运动与画风一致性 |
 
 用户明确指定的模式优先；已建立项目沿用 `production.json` 的模式和风格。没有指定且无项目模式时沿用原来的真人剧默认。需求同时包含两种模式时分别建立子目录和交付，不把两种风格混进同一组。切换模式时保留故事与台词，另建该模式的设定、参考图和分镜；不覆盖另一模式的素材。

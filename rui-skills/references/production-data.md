@@ -23,4 +23,6 @@ node scripts/production.mjs export-text "C:/Projects/My Drama" --mode comic --ou
 
 `export-text`需要剧本和分镜，先验证再输出中文「统一提示词、逐镜时间、动作、机位、构图、视线和逐字台词」。不会写回或自动填补源JSON。剧本人物没有名字映射时保留真实ID，不编造人名。可选顶层 `storyboard.unifiedPrompt`保存用户指定的全局画幅、摄影与风格；没有自定义时使用所选模式的9:16默认。漫剧的`cut.lens`可描述虚拟透视，`cut.animation`与`cut.visualTreatment`为可选补充；导出保留这些动画/画面说明。台词按节拍认领保留，不翻译、不删改。
 
+真人剧默认统一提示词包含从[ANERNEQ光影参考](anerneq-lighting.md)提炼的已有光源、受光面、阴影与曝光连续性原则，不自动增加雪地、火焰或夜景。具体模板与光源地图由agent按场景编写，保存到`storyboard.unifiedPrompt`、剧本场景`lighting`及逐镜`lighting`。自定义统一提示词优先，不被默认文本追加或重写；命令不会仅凭片名反推场景或验证生成效果。漫剧导出继续使用其独立画风规则。
+
 默认无BGM、无字幕。源分镜有配乐时导出明确报错，需根据用户实际要求在源资料中修改或显式使用`--allow-music`，不静默丢弃原配乐。输出后的空间和表演连续性还需按主技能复核，结构检查不能证明画面实际正确。
