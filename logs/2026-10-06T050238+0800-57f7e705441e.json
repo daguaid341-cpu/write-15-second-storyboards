@@ -6,7 +6,7 @@
   "skill": "rui-skills",
   "task_summary": "整合制作模块，主技能更名Rui-Skills，默认分镜组改为30秒",
   "rules_version": "runtime-rules:2.0",
-  "status": "in_progress",
+  "status": "completed",
   "backfilled": true,
   "recording_note": "在跨日继续任务时建立此记录；此前已完成仓库读取、主入口更名与部分模块导入，不补造先前事件时间。",
   "events": [
@@ -19,14 +19,32 @@
       "at": "2026-10-06T13:10:35+08:00",
       "stage": "validation",
       "summary": "Rui-Skills、30秒流程、六个制作模块与独立人物包已完成；全部本地回归通过，准备同步 GitHub。"
+    },
+    {
+      "at": "2026-10-06T13:15:54+08:00",
+      "stage": "finish",
+      "summary": "Rui-Skills 升级已同步 GitHub main；远端提交与本地完整文件树一致，全部回归通过。"
     }
   ],
-  "lessons": [],
+  "lessons": [
+    "交付组时长与视频服务单次生成上限分开表达；校验、报告和文本导出使用同一宿主时长规则。",
+    "本地 CLI 账号无写权限时使用已授权 GitHub 连接；完整文件树哈希一致后再确认同步。"
+  ],
   "validation": {
     "text": "passed",
     "visual": "not_run",
     "details": "1571 deterministic module and integration checks passed; packaging, links, 30-second example, invocation-log lifecycle, and both official skill validators passed. No real image or video generation."
   },
-  "persistence": "workspace_saved",
-  "github_sync": "pending"
+  "persistence": "workspace_and_github",
+  "github_sync": "verified",
+  "finished_at": "2026-10-06T13:15:54+08:00",
+  "verified_commit": "91dab8f38cd2f89ca7950b12e1cc34c12380debd",
+  "verified_tree": "506d03a70253741b0218b6f9bea3c64c8a4f542b",
+  "publication_note": "此前自动审批拒绝公开最终运行记录；用户随后明确允许将此核验日志公开到同一 GitHub 仓库。verified_commit 和 verified_tree 指向已核验的功能更新，日志本身的发布以远端文件为准。",
+  "publication_authorization": {
+    "status": "explicitly_authorized",
+    "user_response": "允许公开核验日志",
+    "recorded_at": "2026-10-06T13:17:12+08:00",
+    "destination": "daguaid341-cpu/write-15-second-storyboards"
+  }
 }
