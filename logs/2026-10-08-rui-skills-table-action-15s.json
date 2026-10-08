@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "id": "rui-skills-20261008-table-15s",
+  "recorded_at": "2026-10-08T22:50:00+08:00",
+  "timezone": "Asia/Shanghai",
+  "skill": "rui-skills",
+  "task_summary": "按真人剧模式重写单场15秒餐桌下连续脚部动作分镜；脱鞋、轻触裤料、向上移动、停顿；不涉及其他角色镜头",
+  "rules_version": "rui-skills/SKILL.md@8eeea1d7",
+  "status": "started",
+  "events": [
+    {
+      "stage": "start",
+      "summary": "读到GitHub技能主文件、真人剧流程、光影与调用记录规则，选择真人剧，固定15秒四镜结构"
+    }
+  ],
+  "lessons": [],
+  "validation": {
+    "text": "pending",
+    "visual": "not_run"
+  },
+  "persistence": "github_public_repository_log",
+  "github_sync": "started_log_written"
+}
