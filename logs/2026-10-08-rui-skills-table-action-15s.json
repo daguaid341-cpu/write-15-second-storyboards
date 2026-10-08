@@ -6,18 +6,35 @@
   "skill": "rui-skills",
   "task_summary": "按真人剧模式重写单场15秒餐桌下连续脚部动作分镜；脱鞋、轻触裤料、向上移动、停顿；不涉及其他角色镜头",
   "rules_version": "rui-skills/SKILL.md@8eeea1d7",
-  "status": "started",
+  "status": "completed",
   "events": [
     {
       "stage": "start",
       "summary": "读到GitHub技能主文件、真人剧流程、光影与调用记录规则，选择真人剧，固定15秒四镜结构"
+    },
+    {
+      "stage": "generation",
+      "summary": "完成统一提示词和四个顺序镜头，时段0–3、3–6、6–10、10–15秒，保持只描写指定双人桌下动作"
+    },
+    {
+      "stage": "review",
+      "summary": "文本检查通过：15秒无缺口、无新增镜头角色、脱鞋与向上位移动作连续；未生成图像或视频"
+    },
+    {
+      "stage": "finish",
+      "summary": "已交付15秒真人剧中文分镜提示词"
     }
   ],
-  "lessons": [],
+  "lessons": [
+    {
+      "type": "no_new_rule",
+      "summary": "用户要求已由真人剧工作流和连续性要求覆盖，未识别需要改动的通用技能规则"
+    }
+  ],
   "validation": {
-    "text": "pending",
+    "text": "pass_manual",
     "visual": "not_run"
   },
   "persistence": "github_public_repository_log",
-  "github_sync": "started_log_written"
+  "github_sync": "completed_log_synced"
 }
