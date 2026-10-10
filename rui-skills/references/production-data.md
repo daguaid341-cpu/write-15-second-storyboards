@@ -2,6 +2,8 @@
 
 轻量口头剧情不必建立本目录。完整制作项目把 JSON 放在用户项目目录：`outline/outline.json`、`characters/cast.json`、`art/art.json`、`script/script.json`、`storyboard/storyboard.json`。每份 JSON 的字段契约见对应 `modules/novel-*/references/schema.md`；剧本 `flow` 的每拍是 `action` 或 `speaker` + `line` 二选一。分镜按集、段、镜头记录，`beats: [起,止]` 指向本场节拍（1起）。
 
+目录结构不是要求每次生成全部产物。视频任务直接使用已有资产，缺少 `cast.json` / `art.json` 时不自动启动设计或编造外观；下方人物模块命令仅供独立人物设计任务使用。检查已有数据与执行设计工作流是不同操作。
+
 项目根目录 `production.json` 保存模式：真人剧 `{"mode":"live-action"}`，漫剧 `{"mode":"comic","style":"2D国风，清晰线条、统一色板"}`。`style`可选且为非空字符串；`mode`仅支持这两个标识。无配置的旧项目按真人剧执行。两种版本分别建目录，各自放全套JSON、参考图和输出，保留原版。
 
 从本技能目录执行，路径有空格使用引号：

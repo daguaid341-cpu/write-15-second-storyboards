@@ -1,10 +1,18 @@
 # Rui-Skills
 
-提供分别使用的 **真人剧** 与 **漫剧** 制作流程，把一句剧情、小说或完整剧本转成保持人物、场景与道具连续性的 **30秒分镜**。真人剧新增从 Higgsfield《ANERNEQ》（北极之息）画面分析提炼的场景光影参考与原创提示词模板。两种模式各有视觉规范，共享改编大纲、人物与音色设定、场景道具、剧本、检查报告和角色资产管理。
+提供分别使用的 **真人剧** 与 **漫剧** 视频流程，把一句剧情、小说或完整剧本转成保持人物、场景与道具连续性的 **30秒分镜**。真人剧保留从 Higgsfield《ANERNEQ》（北极之息）画面分析提炼的光影参考。人物设定图与场景资产设计作为独立任务，视频流程只引用已有资产，不混用设计模板。
 
 界面名称：**Rui-Skills**。调用标识：`$rui-skills`。主技能目录：[rui-skills/](rui-skills/SKILL.md)。GitHub 仓库地址沿用原地址。
 
-## 选择制作模式
+## 先区分视频与人物设定图
+
+- **视频分镜：**调用 `$rui-skills`，再选择真人剧或漫剧。沿用指定角色与场景，交付前内部检查空间、机位、画面来源和连续性，不自行补写衣服颜色款式或重设房间。
+- **人物设定图：**调用独立技能 `$character-turnaround-from-image`。人物设计、三视图排版与图外补全仅在该任务执行。
+- **文字人物、场景或道具设计：**明确委托对应资产产物后才进入[独立资产设计流程](rui-skills/references/asset-design-workflow.md)。它不是视频提示词的默认前置步骤。
+
+同时要求视频和设定图时分开交付，仅通过指定资产及已确定状态交接。
+
+## 视频制作模式
 
 | 独立入口 | 适合的任务 | 专用规范 |
 | --- | --- | --- |
@@ -111,17 +119,17 @@ node rui-skills/scripts/production.mjs run novel-outline checkup "C:/Projects/My
 ## 人物资产
 
 ```text
-调用 $rui-skills，使用真人剧模式，用我本轮上传的人物图生成原版三视图拼版。
+调用 $character-turnaround-from-image，用我本轮上传的人物图生成原版三视图拼版。
 保留脸和衣服，左大头照、右正面/严格侧面/背面，浅灰背景与自然肤质。
 ```
 
 ```text
-调用 $rui-skills，使用真人剧模式，为这个角色建立可持续修改的独立参考图资产。
+调用 $character-turnaround-from-image，为这个角色建立可持续修改的独立参考图资产。
 使用写实风格，先建立正面全身锚点，再生成大头照、侧面和背面。
 保留每张图的版本；锚点变化后标记旧派生图过期。
 ```
 
-独立人物技能 [`character-turnaround-from-image/`](character-turnaround-from-image/SKILL.md) 仍可单独导入与调用。两处都随包附带资产管理模块，详见[角色资产流程](rui-skills/references/character-assets.md)。优先使用本会话可用的图像工具；只有用户选择外部服务时才配置对应适配器。无图像能力时交付提示词与待生成清单。
+人物设定图使用独立技能 [`character-turnaround-from-image/`](character-turnaround-from-image/SKILL.md)，详见其[角色资产流程](character-turnaround-from-image/references/character-assets.md)。视频提示词不调用此流程。优先使用本会话可用的图像工具；只有用户选择外部服务时才配置对应适配器。无图像能力时交付提示词与待生成清单。
 
 ## 安装与更新
 

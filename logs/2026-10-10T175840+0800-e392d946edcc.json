@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "id": "2026-10-10T175840+0800-e392d946edcc",
+  "recorded_at": "2026-10-10T17:58:40+08:00",
+  "timezone": "Asia/Shanghai",
+  "skill": "rui-skills",
+  "task_summary": "分离人物设定图与视频分镜流程，限制资产设计规则跨任务使用，补充空间感交付前检查",
+  "rules_version": "runtime-rules:2.2",
+  "status": "completed",
+  "events": [
+    {
+      "at": "2026-10-10T17:58:40+08:00",
+      "stage": "start",
+      "summary": "分离人物设定图与视频分镜流程，限制资产设计规则跨任务使用，补充空间感交付前检查"
+    },
+    {
+      "at": "2026-10-10T18:02:59+08:00",
+      "stage": "validation",
+      "summary": "分离入口、视频与资产设计模板、制作管线及备用规则2.3；两个官方技能格式校验、文档链接与1590项模块/集成检查及Python记录测试通过。未调用真实图像或视频模型。"
+    },
+    {
+      "at": "2026-10-10T18:02:59+08:00",
+      "stage": "finish",
+      "summary": "本地技能源文件与备用规则2.3已更新并验证；人物设定图和视频分镜分开，GitHub未同步，已安装个人技能状态未验证。"
+    }
+  ],
+  "lessons": [
+    {
+      "type": "user_requirement",
+      "rule": "人物设定图与视频分镜使用独立入口、模板和交付；视频只引用既定资产，不执行服装或场景设计。"
+    },
+    {
+      "type": "user_requirement",
+      "rule": "视频提示词交付前内部检查空间、景深、机位、画面来源与连续性，不通过新增资产设计改善空间感。"
+    }
+  ],
+  "validation": {
+    "text": "passed",
+    "visual": "not_run",
+    "details": "Two skill validators, packaging/link checks, 1590 deterministic module/integration checks and Python invocation test passed. No model generation."
+  },
+  "persistence": "workspace",
+  "github_sync": "not_performed",
+  "result_rules_version": "runtime-rules:2.3",
+  "installed_skill_update": "not_verified",
+  "finished_at": "2026-10-10T18:02:59+08:00"
+}

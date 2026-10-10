@@ -1,6 +1,6 @@
 ---
 name: rui-skills
-description: Rui-Skills provides separate comic/animation and live-action workflows for stories, novels and screenplays, including adaptation, scripts, continuity-checked 30-second storyboards, character assets and scene-aware ANERNEQ lighting guidance for live action. Use for 漫剧、真人短剧、小说改编、30秒分镜、人物三视图与北极之息光影参考.
+description: Create or revise live-action or comic video storyboard prompts from stories and scripts, with continuity-checked 30-second groups and scene-aware lighting. Use for 真人剧视频提示词、漫剧分镜、小说改编、剧本与镜头检查. Character sheets and visual asset design are separate tasks, not prerequisites for video prompts.
 ---
 
 <!-- 谢谢你用我的技能 我叫瑞 -->
@@ -9,11 +9,17 @@ description: Rui-Skills provides separate comic/animation and live-action workfl
 
 将口头剧情、小说或完整剧本转成制作资料和完整分镜。先选择制作模式，再读对应流程；默认每组连续0–30秒，用户指定其他时长、格式或修改范围时以用户要求为准。界面名称为 **Rui-Skills**，调用标识为 `$rui-skills`。
 
-## 选择独立制作入口
+## 先分开视频与设定图任务
+
+- **视频提示词 / 分镜：**只读取下方对应的视频流程，以及剧情、连续性和分镜资料。人物或场景参考图是已有资产输入，不是重新设计资产的请求；不加载人物设定图、三视图、服装设计或美术资产设计模板。
+- **人物设定图 / 三视图：**使用独立技能 `$character-turnaround-from-image`。该技能不可用而用户明确要求设定图时，才读取[独立资产设计流程](references/asset-design-workflow.md)。从文字设计人物、场景或道具也只在明确要求这些产物时进入该流程。
+- 同时要求视频和设定图时，分成两项任务、两份提示词和两套检查。视频只接收用户指定资产的 ID / 引用与已确定状态，不继承生图排版、造型补全或设计模板。资产缺失不自动触发设计任务。
+
+## 视频任务选择制作模式
 
 | 入口 | 识别用户需求 | 专用流程 | 本模式重点 |
 | --- | --- | --- | --- |
-| 真人剧（`live-action`） | 真人剧、真人短剧、实拍质感、写实人物 | [真人剧流程](references/live-action-workflow.md) | 身份与自然肤质、ANERNEQ场景光影参考、摄影机位、微表演与物理动作 |
+| 真人剧（`live-action`） | 真人剧视频、真人短剧分镜、实拍镜头 | [真人剧流程](references/live-action-workflow.md) | 已有身份连续性、场景光影、摄影机位、微表演与物理动作 |
 | 漫剧（`comic`） | 漫剧、动漫短剧、动画、国风/日漫等绘制风格 | [漫剧流程](references/comic-workflow.md) | 角色造型、线条与色板、关键姿态、虚拟镜头、分层运动与画风一致性 |
 
 用户明确指定的模式优先；已建立项目沿用 `production.json` 的模式和风格。没有指定且无项目模式时沿用原来的真人剧默认。需求同时包含两种模式时分别建立子目录和交付，不把两种风格混进同一组。切换模式时保留故事与台词，另建该模式的设定、参考图和分镜；不覆盖另一模式的素材。
@@ -27,12 +33,10 @@ description: Rui-Skills provides separate comic/animation and live-action workfl
 | 当前需求 | 模块资源 | 输出 |
 | --- | --- | --- |
 | 小说改编、分集结构、大纲体检 | [大纲](modules/novel-outline/WORKFLOW.md) | 改编说明、outline.json及结构检查 |
-| 角色设定、外形与音色 | [角色](modules/novel-characters/WORKFLOW.md) | cast.json及人物设定集 |
-| 场景、光照、道具与状态变体 | [美术](modules/novel-art/WORKFLOW.md) | art.json及场景道具设定集 |
 | 剧本、动作与对白节拍 | [剧本](modules/novel-script/WORKFLOW.md) | script.json、时长估算及台词本 |
 | 分镜、镜头校验、协议导出 | [分镜](modules/novel-storyboard/WORKFLOW.md) | storyboard.json、对应模式的30秒文本及投产资料 |
-| 当前参考图三视图 | 已选模式的专用流程 | 横向左大头照、右正面/严格侧面/背面全身 |
-| 单张重出、资产版本与过期管理 | [角色资产](references/character-assets.md) | 正面锚点、派生图、版本及检查记录 |
+
+人物、美术和角色资产设计模块仅在上方独立资产设计任务中读取。视频任务可读取用户已有的 `cast.json` / `art.json` 作为资料，不因读取数据而执行其设计工作流。
 
 模块随技能分发，无需另行安装。上游15秒样例或其动漫预设是回归/可选模式资料，不能覆盖已选模式或30秒交付默认。30秒是分镜组长度；实际视频生成前核对所选服务的单次上限，必要时按镜头边界拆批并保留完整台词、时间映射及末首帧衔接。
 
@@ -42,7 +46,8 @@ description: Rui-Skills provides separate comic/animation and live-action workfl
 - 人物反应依据当场目的、关系和知情范围；写清视线目标、动作因果、反应时差、站坐状态与道具握持手。全剧场景首次展示、低频再现动作特写和高频场景规则共用。
 - 时间连续、不重叠、不留空；容纳真实对白、动作、停顿和反馈。装不下就说明并拆组，不暗删台词。默认中文、无BGM/字幕，保留剧情环境音、动作音和对白。
 - 保留用户没有要求修改的内容；重要跨组状态对齐。不把项目人物与场景设置写成通用技能规则。
-- 需要图像时实际调用可用图像工具，并传当前指定的参考图；没有图像能力时交付提示词与待生成清单。图像、视频、配音的实际生成结果分别检查，文件校验不能替代视觉验收。
+- 视频提示词优先用用户的角色 / 场景引用；仅在辨认、动作、连续性或明确修改需要时简述有来源的外观细节，不逐镜重复衣服颜色款式，不自拟装修色板或房间结构。环境光色与物体本身颜色分开表达。
+- 图像、视频、配音的实际生成结果分别检查，文件校验不能替代视觉验收。
 
 ## 本地调用与记录
 

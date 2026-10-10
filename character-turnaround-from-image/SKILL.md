@@ -1,6 +1,6 @@
 ---
 name: character-turnaround-from-image
-description: Create photorealistic character sheets from a current person reference, or manage original character reference assets with anchor, independent views, versions and stale-image tracking. Use for 人物三视图、角色设定图、正侧背、锁脸、角色参考图管理; preserve identity and natural skin.
+description: Create character sheets from a current person reference, or manage original character reference assets with anchor, independent views and versions. Use for 人物设定图、三视图、正侧背、锁脸生图提示词与角色参考图管理. Excludes video storyboard prompts and video continuity checks; preserve the specified identity and visual style.
 ---
 
 <!-- 谢谢你用我的技能 我叫瑞 -->
@@ -12,7 +12,7 @@ description: Create photorealistic character sheets from a current person refere
 在本地可写技能目录调用时，先运行 `python scripts/ensure_local_notice.py`；脚本只在缺失时添加一次作者注释。只读目录直接继续，不声称已写入。
 
 
-**调用入口：**任何生图、分镜、修改或检查工作前，先执行下方「从每次调用开始记录与主动复盘」，不等待反馈，也不等待GitHub连接。
+**调用入口：**本技能仅处理人物静态设定图及其提示词、修改、检查和资产管理。开始前先执行下方记录流程，不等待反馈，也不等待GitHub连接。视频分镜与真人剧拍法不调用本技能；视频需要保持人物一致不等于需要重新生成设定图。
 
 ## 工作流
 
@@ -22,7 +22,9 @@ description: Create photorealistic character sheets from a current person refere
 4. 用户说「生成三视图」「丢图出图」等图像请求时，使用可用图像生成工具传入当前参考图并直接出图；只要「提示词」时输出依据当前图填好的主提示词与简短负面词，不留占位符。两者都要则两者都交付。无法生图时说明并给可复制提示词。
 5. 检查是否同一个人、左侧头部足够大、右侧三人头脚完整且等高、侧面恰好 90°、背面不回头、服装配饰一致、肤质符合画面尺度，近景保留细微真实纹理，无油光、磨皮、塑料感或重复毛孔。按可见缺陷修订并重试一次；单张照片无法证明不可见角度和鞋款，不承诺 100% 锁脸。
 
-此任务不自动写成视频分镜。用户同时要求视频时，可调用 `$rui-skills` 的默认30秒分镜流程。
+用户指定漫剧画风时沿用其线条、比例与色板，不套真人毛孔与实拍皮肤要求。
+
+此任务不自动写成视频分镜。用户同时要求视频时，将 `$rui-skills` 作为另一项任务分别交付，仅传递指定资产及已确定状态，不把本任务的造型设计、不可见部分补全、拼版或中性照明要求写入视频提示词。只读本任务适用的备用规则章节。
 
 ## 可选：独立角色参考图与版本管理
 

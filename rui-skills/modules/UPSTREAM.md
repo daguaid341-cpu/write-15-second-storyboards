@@ -12,6 +12,10 @@ the original Apache-2.0 license and attribution without modification.
 
 Local changes:
 
+- Separate visual asset design from video storyboard instructions (2026-10-10).
+  Host routing loads character/art design only for explicit asset tasks; video
+  workflows consume existing assets without inheriting design or sheet rules.
+
 - Rename the five upstream `SKILL.md` files to `WORKFLOW.md` so Rui-Skills is
   the discoverable entry point; add host-routing and duration guidance.
 - Omit standalone module README files and screenshot assets. Keep fixture
