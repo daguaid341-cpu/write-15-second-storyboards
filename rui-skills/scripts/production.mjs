@@ -5,6 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
+import { requireAuthorization } from './local-gate.mjs';
 import { validateOutline } from '../modules/novel-outline/scripts/novel-outline.mjs';
 import { validateCast } from '../modules/novel-characters/scripts/novel-characters.mjs';
 import { validateArt, castNamesOf } from '../modules/novel-art/scripts/novel-art.mjs';
@@ -104,6 +105,7 @@ function requireValid(project, options) {
 }
 const fmt = n => Number(n.toFixed(6)).toString();
 export function exportText(project, options = {}) {
+  requireAuthorization();
   const {docs: d} = project;
   if (!d.script || !d.storyboard) throw new Error('文本导出需要 script/script.json 和 storyboard/storyboard.json');
   requireValid(project, options);
@@ -151,6 +153,7 @@ export function main(argv) {
   const [command, target, ...args] = argv;
   if (!command || ['--help', '-h'].includes(command)) { console.log('Rui-Skills: run <module> <args...> | check <project> [--mode live-action|comic] [--variable-length] | report <project> [--mode live-action|comic] [--out <dir>] [--variable-length] | export-text <project> [--mode live-action|comic] [--out <file>] [--variable-length] [--allow-music]'); return; }
   if (command === 'run') {
+    requireAuthorization();
     if (!MODULES.includes(target)) throw new Error(`模块只能是 ${MODULES.join(', ')}`);
     process.stdout.write(invoke(path.join(moduleDir, target, 'scripts', `${target}.mjs`), args, process.cwd())); return;
   }
@@ -163,6 +166,7 @@ export function main(argv) {
     else if (args[i] === '--out' && args[i + 1] && !args[i + 1].startsWith('--')) output = path.resolve(args[++i]);
     else throw new Error(`未知参数或缺少值：${args[i]}`);
   }
+  requireAuthorization();
   const project = loadProject(target);
   if (command === 'export-text') {
     const text = exportText(project, options);

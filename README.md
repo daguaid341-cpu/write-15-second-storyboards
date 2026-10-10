@@ -4,6 +4,8 @@
 
 界面名称：**Rui-Skills**。调用标识：`$rui-skills`。主技能目录：[rui-skills/](rui-skills/SKILL.md)。GitHub 仓库地址沿用原地址。
 
+Rui-Skills 视频任务现在必须先通过本机服务器验证；未配置、未批准、超时或断连时停止。首次配置与启动见[本机接口说明](rui-skills/references/local-verification.md)。人物设定图技能不受此限制。私有 `.local-verifier` 配置不得提交或随技能分发。
+
 ## 先区分视频与人物设定图
 
 - **视频分镜：**调用 `$rui-skills`，再选择真人剧或漫剧。沿用指定角色与场景，交付前内部检查空间、机位、画面来源和连续性，不自行补写衣服颜色款式或重设房间。

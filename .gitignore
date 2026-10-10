@@ -1,6 +1,7 @@
 # Private/generated production data must stay in the user's project directory.
 .env
 .env.*
+.local-verifier/
 config.local.json
 .gates.jsonl
 __pycache__/

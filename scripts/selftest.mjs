@@ -13,6 +13,7 @@ const testEnv = {...process.env, TMP: tempRoot, TEMP: tempRoot, TMPDIR: tempRoot
 const modules = ['novel-outline', 'novel-characters', 'novel-art', 'novel-script', 'novel-storyboard', 'character-refs'];
 const tests = modules.map(name => `rui-skills/modules/${name}/scripts/selftest.mjs`);
 tests.push('rui-skills/modules/report-selftest.mjs', 'rui-skills/scripts/production-selftest.mjs', 'rui-skills/modules/character-refs/scripts/native-selftest.mjs');
+tests.push('rui-skills/scripts/local-gate-selftest.mjs');
 
 function walk(dir) {
   return fs.readdirSync(dir, {withFileTypes: true}).flatMap(entry => {

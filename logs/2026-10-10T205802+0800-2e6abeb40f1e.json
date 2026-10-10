@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "id": "2026-10-10T205802+0800-2e6abeb40f1e",
+  "recorded_at": "2026-10-10T20:58:02+08:00",
+  "timezone": "Asia/Shanghai",
+  "skill": "rui-skills",
+  "task_summary": "配置仅本机可用的Rui-Skills使用授权接口与失败即停止的调用检查，人物设定图保持独立",
+  "rules_version": "runtime-rules:2.4",
+  "status": "completed",
+  "events": [
+    {
+      "at": "2026-10-10T20:58:02+08:00",
+      "stage": "start",
+      "summary": "配置仅本机可用的Rui-Skills使用授权接口与失败即停止的调用检查，人物设定图保持独立"
+    },
+    {
+      "at": "2026-10-10T21:04:44+08:00",
+      "stage": "finish",
+      "summary": "本机授权接口与视频入口检查已实现，默认仅监听本机，当前版本初始化并实际验证通过；私有配置不提交，准备同步代码与说明。"
+    }
+  ],
+  "lessons": [
+    {
+      "type": "user_requirement",
+      "rule": "仅Rui-Skills视频流程必须通过本机服务器验证；人物设定图独立。拒绝、未配置、断连、超时和未批准版本均停止。"
+    }
+  ],
+  "validation": {
+    "text": "passed",
+    "visual": "not_run",
+    "details": "1615 module/integration/authorization checks plus Python runtime test and skill format validation passed. Real local service returned a valid matching grant; private configuration is git-ignored. No image/video generation."
+  },
+  "persistence": "workspace",
+  "github_sync": "pending",
+  "result_rules_version": "runtime-rules:2.5",
+  "local_service": "running_verified",
+  "installed_skill_update": "not_verified",
+  "finished_at": "2026-10-10T21:04:44+08:00"
+}

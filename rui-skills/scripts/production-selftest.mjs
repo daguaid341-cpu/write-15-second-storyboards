@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
+import { startFixture } from './gate-test-fixture.mjs';
 import { FILES, checkProject, exportText, resolveProduction } from './production.mjs';
 import { h3AlignmentLine, h3CutTime } from '../modules/novel-storyboard/scripts/novel-storyboard.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
@@ -17,6 +18,9 @@ const seg = {id: 'E01-01', sceneIndex: 1, blocking: '男人站在桌旁，面向
 seg.h3Prompt = h3AlignmentLine(cuts) + '\n\nintegrated_multimodal_description:\n' + cuts.map((c, i) => `[Shot ${i + 1}] ${i ? `At ${h3CutTime(i * 5)}, ` : ''}Static Shot. The man stands beside the table and looks down.${i === 5 ? ` He says <d>[Chinese] ${line}</d>.` : ''}`).join('\n') + '\n\noverall_soundscape: Quiet room tone.\n\nnon_diegetic_music: N/A';
 const storyboard = {source: '测试故事', episodes: [{ep: 1, segments: [seg]}]};
 const project = {root: temp, docs: {script, storyboard}};
+const gateFixture = await startFixture();
+const previousGateConfig = process.env.RUI_SKILL_GATE_CONFIG;
+process.env.RUI_SKILL_GATE_CONFIG = gateFixture.configPath;
 let n = 0;
 const ok = (condition, label) => {assert.ok(condition, label); n++;};
 try {
@@ -88,6 +92,9 @@ try {
   ok(run('check', temp, '--mode', 'unknown').status !== 0, 'CLI rejects unknown mode');
   ok(run('run', '../escape', 'help').status !== 0, 'Module selector cannot escape packaged modules');
 } finally {
+  if (previousGateConfig === undefined) delete process.env.RUI_SKILL_GATE_CONFIG;
+  else process.env.RUI_SKILL_GATE_CONFIG = previousGateConfig;
+  await gateFixture.stop();
   const resolved = path.resolve(temp);
   assert.ok(resolved.startsWith(path.resolve(tempRoot) + path.sep));
   fs.rmSync(resolved, {recursive: true, force: true});
