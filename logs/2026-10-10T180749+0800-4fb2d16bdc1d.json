@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "id": "2026-10-10T180749+0800-4fb2d16bdc1d",
+  "recorded_at": "2026-10-10T18:07:49+08:00",
+  "timezone": "Asia/Shanghai",
+  "skill": "rui-skills",
+  "task_summary": "修正全剧场景首现与再现镜头规则的执行优先级，消除固定开场顺序冲突",
+  "rules_version": "runtime-rules:2.3",
+  "status": "completed",
+  "events": [
+    {
+      "at": "2026-10-10T18:07:49+08:00",
+      "stage": "start",
+      "summary": "修正全剧场景首现与再现镜头规则的执行优先级，消除固定开场顺序冲突"
+    },
+    {
+      "at": "2026-10-10T20:56:04+08:00",
+      "stage": "finish",
+      "summary": "全景规则执行修正已完成，备用规则2.4与主入口及模块已统一，准备按用户要求同步GitHub。服务器验证为另项任务，接口信息待提供。"
+    }
+  ],
+  "lessons": [
+    {
+      "type": "user_requirement",
+      "rule": "每次分镜先判断全剧场景出场状态，首现默认整体交代，低频再现优先动作特写，高频复用通常直接入戏；逐场核对依据与镜号。"
+    },
+    {
+      "type": "verified",
+      "rule": "9月30日初始规则使用允许措辞，10月6日引入每集先运动主体的模块规则；本次移除固定顺序并统一优先级。"
+    }
+  ],
+  "validation": {
+    "text": "passed",
+    "visual": "not_run",
+    "details": "Skill validation, local Markdown links and diff checks passed; reviewed first appearance, rare/frequent return, unknown history and fixed-monitor exceptions. No generation."
+  },
+  "persistence": "workspace",
+  "github_sync": "pending",
+  "result_rules_version": "runtime-rules:2.4",
+  "finished_at": "2026-10-10T20:56:04+08:00"
+}
